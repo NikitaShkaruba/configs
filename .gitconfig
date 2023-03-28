@@ -1,0 +1,14 @@
+[user]
+        name = n-shkaruba
+        
+[push]
+        # push to current branch, don't type upstream names
+        default = current
+        
+[alias]
+        # short versions of some commands
+        re = reset
+        co = checkout
+        
+        # list last checkouted branches
+        lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
